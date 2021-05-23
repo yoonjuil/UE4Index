@@ -169,8 +169,84 @@ Win32에서는 기본적으로 다음의 API를 가지고 있다.
 
 * GetDiskTotalAndFreeSpace
 
-	* 경로의 디스크의 전체 용량과 빈 용량을 반환한다.
+	* 경로의 디스크의 전체 용량과 빈 용량을 반환한다.
 
-	
+* QueryRegKey
+
+	* 레지스트리에서 특정 경로의 있는 값을 가져온다.
+	* 값의 정확한 길이를 알 수 없을 경우에 사용한다.
+
+* IsRunningOnBattery
+
+	* 배터리로 실행중인지 알아낸다.
+	* GetSystemPowerStatus 를 사용한다.
+
+* GetOperatingSystemId
+
+	* OS 가 설치될때 생성된 고유한 시스템 id 를 가져온다.
+
+## FWindwosCriticalSection
+
+* FWindowsCriticalSection
+	* CriticalSection 을 생성한다.
+* FWindowsSystemWideCriticalSection
+	* Mutex를 이용한 시스템 전반적인 CriticalSection을 사용한다.
+* FWindowsRWLock
+	* RW Lock 을 사용한다.
+	* https://docs.microsoft.com/en-us/windows/win32/sync/slim-reader-writer--srw--locks
+
+## FWindowsPlatformProcess
+
+* GetCurrentProcessId
+	* 현재 프로세스 id 를 가져온다.
+* GetCurrentCoreNumber
+	* 현재 코어수를 반환한다.
+* BaseDir
+	* 실행파일이 있는 경로를 반환한다.
+* UserDir
+	* 내 문서안에 사용자 경로를 반환한다.
+	* My Documents 경로이다.
+	* "C:\Users\ibsof\Documents"
+* UserTempDir
+	* 임시 파일 경로를 반환한다.
+	* "C:\Users\ibsof\AppData\Local\Temp"
+* UserSettingsDir
+	* 사용자 설정 경로를 반환한다.
+	* AppData 경로이다.
+	* "C:\Users\ibsof\AppData"
+* ApplicationSettingsDir
+	* ProgramData 경로를 반환한다.
+	* "C:\ProgramData\Epic"
+* ComputgerName
+	* Computer 이름을 반환한다.
+* UserName
+	* UserName을 반환한다.
+* SetCurrentWorkingDirectoryToBaseDir
+	* 현재 작업 경로를 실행파일 경로로 설정한다.
+* GetCurrentWorkingDirectory
+	* 현재 작업 경로를 반환한다.
+* ShaderWorkingDir
+	* 쉐이더 작업 경로를 반환한다.
+	* UserTempDir() / "UnrealShaderWorkingDir/" 이다.
+* ExecutablePath
+	* 실행파일이 있는 경로를 반환한다.
+* ExecutableName
+	* 실행파일명을 반환한다.
+* GenerateApplicationPath
+	* Engine/Binaries/ 하위에 Platform 에 따른 실행파일 경로를 생성한다.
+	* 현재 시스템이 64비트일 경우 Development 용 실팽파일 A라면 Engine/Binaries/Win64/A-Win64-Development.exe 으로 생성된다.
+* LaunchURL
+	* schemeName이 http/https 인 경우 LaunchWebURL로 실행하고, 그렇지 않을 경우에는 LaunchDefaultHandlerForURL 을 실행한다.
+	* LaunchDefaultHandlerForURL 은 ShellExecuteW 을 사용한다.
+	* LaunchWebURL은 레지스트리에 등록된 기본 브라우저로 URL을 실행한다.
+* GetApplicationMemoryUsage
+	* 프로세스가 사용하고 있는 메모리 양을 반환한다.
+* GetPerFrameProcessorUsage
+	* 프로세스의 프레임을 반환한다.
+* IsApplicationRunning
+	* 프로세스가 실행중인지 확인한다.
+* GetApplicationName
+	* 프로세스의 애플리케이션 이름을 반환한다.
+
 
 
